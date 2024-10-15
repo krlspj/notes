@@ -96,3 +96,29 @@ func OrderWorkflow(ctx workflow.Context, orderID string) error {
 - **Versioning**: Supports versioning of workflows, allowing for safe updates to long-running processes.
 
 This architecture is particularly useful for complex, long-running processes that need to be resilient to failures and scalable. It separates the orchestration logic (workflows) from the actual implementation of tasks (activities), providing a clear and maintainable structure for distributed applications.
+
+## Example
+```go
+// in workflows/order_workflow.go
+func OrderWorkflow(ctx workflow.Context, orderID string) error {
+    logger := workflow.GetLogger(ctx)
+    logger.Info("OrderWorkflow started", "orderID", orderID)
+
+    var result string
+    err := workflow.ExecuteActivity(ctx, activities.ProcessOrder, orderID).Get(ctx, &result)
+    if err != nil {
+        logger.Error("OrderWorkflow failed", "error", err)
+        return err
+    }
+
+    logger.Info("OrderWorkflow completed", "result", result)
+    return nil
+}
+
+// in activities/order_activities.go
+func ProcessOrder(ctx context.Context, orderID string) (string, error) {
+    // Implement order processing logic here
+    return "Order " + orderID + " processed successfully", nil
+}
+
+```
