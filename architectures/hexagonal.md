@@ -188,3 +188,47 @@ This structure separates the core business logic from external concerns and allo
 └── testhelper/
     └── test_helper.go                     # Testing utilities
 ```
+```
+golang-hexagon-example/
+├── cmd/
+│   └── main.go
+├── configs/
+│   └── config.json
+├── internal/
+│   ├── adapters/
+│   │   ├── cache/
+│   │   │   └── redis_client/
+│   │   ├── db/
+│   │   │   └── mongodb/
+│   │   │       ├── connection.go
+│   │   │       └── repository.go
+│   │   ├── handlers/
+│   │   │   └── kafka/
+│   │   │       ├── handler.go
+│   │   │       └── service.go
+│   │   ├── http/
+│   │   │   ├── api/
+│   │   │   │   ├── module.go
+│   │   │   │   └── controller.go
+│   │   │   └── server/
+│   │   │       └── echo_server.go
+│   ├── app/
+│   │   ├── services/
+│   │   │   ├── domain_service.go
+│   │   │   └── module.go
+│   │   └── app_module.go
+│   ├── core/
+│   │   ├── models/
+│   │   │   └── models.go
+│   │   ├── ports/
+│   │   │   ├── service_ports.go
+│   │   │   └── repository_ports.go
+│   ├── infrastructure/
+│   │   ├── config/
+│   │   │   └── config.go
+│   │   └── server/
+│   │       └── echo_server.go
+├── go.mod
+├── Makefile
+└── README.md
+```
