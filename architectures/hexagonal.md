@@ -58,7 +58,8 @@ This structure separates the core business logic from external concerns and allo
 
 ---
 
-Example 2 hexagonal
+## Examples
+
 ```
 /hexagonal-api
 ├── cmd/
@@ -122,4 +123,68 @@ Example 2 hexagonal
     └── shared/
         └── valueobjects/
             └── money.go
+```
+---
+
+```
+/hexagonal-api
+├── cmd/
+│   └── api/
+│       ├── main.go                        # Entry point for the API
+│       ├── bootstrap/
+│       │   └── bootstrap.go               # Initializes dependencies and injects them into the layers
+│       ├── handler/
+│       │   ├── conversation_handler.go    # HTTP handlers related to conversations
+│       │   ├── message_handler.go         # HTTP handlers related to messages
+│       │   └── model.go                   # Request/response models
+│       ├── middleware/
+│       │   └── middleware.go              # Middleware (e.g., logging, authentication)
+│       └── router/
+│           └── router.go                  # API routing
+├── internal/
+│   ├── common/
+│   │   ├── infrastructure/
+│   │   │   └── database.go                # Database connection and initialization
+│   │   └── errors/
+│   │       └── errors.go                  # Custom error handling
+│   ├── conversation/
+│   │   ├── domain/
+│   │   │   ├── bot_response.go            # Domain logic for bot responses
+│   │   │   ├── conversation.go            # Main Conversation entity
+│   │   │   ├── message_origin.go          # Message origins definitions
+│   │   ├── application/
+│   │   │   ├── ports/                     # Ports for repositories and services
+│   │   │   │   ├── repositories.go        # Conversation repository interface
+│   │   │   │   └── services.go            # Conversation service interface
+│   │   │   └── services/
+│   │   │       └── conversation_service.go # Business logic for conversations
+│   │   ├── infrastructure/
+│   │   │   └── repositories/
+│   │   │       └── conversation_repository.go  # DB conversation repository implementation
+│   ├── customer/
+│   │   ├── domain/
+│   │   │   └── customer.go                # Main Customer entity
+│   │   ├── application/
+│   │   │   ├── ports/                     # Ports for repositories and services
+│   │   │   │   ├── repositories.go        # Customer repository interface
+│   │   │   │   └── services.go            # Customer service interface
+│   │   │   └── services/
+│   │   │       └── customer_service.go     # Business logic for customers
+│   │   ├── infrastructure/
+│   │   │   └── repositories/
+│   │   │       └── customer_repository.go  # DB customer repository implementation
+│   ├── product/
+│   │   ├── domain/
+│   │   │   └── product.go                 # Main Product entity
+│   │   ├── application/
+│   │   │   ├── ports/                     # Ports for repositories and services
+│   │   │   │   ├── repositories.go        # Product repository interface
+│   │   │   │   └── services.go            # Product service interface
+│   │   │   └── services/
+│   │   │       └── product_service.go      # Business logic for products
+│   │   ├── infrastructure/
+│   │   │   └── repositories/
+│   │   │       └── product_repository.go   # DB product repository implementation
+└── testhelper/
+    └── test_helper.go                     # Testing utilities
 ```
