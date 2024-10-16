@@ -212,12 +212,12 @@ golang-hexagon-example/
 │   │   │   │   └── controller.go
 │   │   │   └── server/
 │   │   │       └── echo_server.go
-│   ├── app/
+│   ├── application/
 │   │   ├── services/
 │   │   │   ├── domain_service.go
 │   │   │   └── module.go
 │   │   └── app_module.go
-│   ├── core/
+│   ├── domain/
 │   │   ├── models/
 │   │   │   └── models.go
 │   │   ├── ports/
