@@ -55,3 +55,70 @@ hexagonal-architecture/
 - `pkg/`: Contains shared packages and utilities.
 
 This structure separates the core business logic from external concerns and allows for easy swapping of adapters.
+---
+
+Example 2 hexagonal
+```
+/hexagonal-api
+├── cmd/
+│   └── api/
+│       └── main.go
+├── internal/
+│   ├── common/
+│   │   ├── infrastructure/
+│   │   │   └── database.go
+│   │   └── errors/
+│   │       └── errors.go
+│   ├── user/
+│   │   ├── domain/
+│   │   │   └── user.go
+│   │   ├── application/
+│   │   │   ├── ports/
+│   │   │   │   ├── repositories.go
+│   │   │   │   └── services.go
+│   │   │   └── services/
+│   │   │       └── user_service.go
+│   │   ├── infrastructure/
+│   │   │   └── repositories/
+│   │   │       └── user_repository.go
+│   │   └── interfaces/
+│   │       └── http/
+│   │           └── handlers/
+│   │               └── user_handler.go
+│   ├── product/
+│   │   ├── domain/
+│   │   │   └── product.go
+│   │   ├── application/
+│   │   │   ├── ports/
+│   │   │   │   ├── repositories.go
+│   │   │   │   └── services.go
+│   │   │   └── services/
+│   │   │       └── product_service.go
+│   │   ├── infrastructure/
+│   │   │   └── repositories/
+│   │   │       └── product_repository.go
+│   │   └── interfaces/
+│   │       └── http/
+│   │           └── handlers/
+│   │               └── product_handler.go
+│   └── customer/
+│       ├── domain/
+│       │   └── customer.go
+│       ├── application/
+│       │   ├── ports/
+│       │   │   ├── repositories.go
+│       │   │   └── services.go
+│       │   └── services/
+│       │       └── customer_service.go
+│       ├── infrastructure/
+│       │   └── repositories/
+│       │       └── customer_repository.go
+│       └── interfaces/
+│           └── http/
+│               └── handlers/
+│                   └── customer_handler.go
+└── pkg/
+    └── shared/
+        └── valueobjects/
+            └── money.go
+```
