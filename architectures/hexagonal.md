@@ -55,6 +55,7 @@ hexagonal-architecture/
 - `pkg/`: Contains shared packages and utilities.
 
 This structure separates the core business logic from external concerns and allows for easy swapping of adapters.
+
 ---
 
 Example 2 hexagonal
